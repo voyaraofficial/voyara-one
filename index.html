@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyara</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#06111f;color:white}
+.hero{min-height:100vh;background:linear-gradient(rgba(0,20,50,.35),rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80') center/cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px}
+nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);width:90%;max-width:1150px;background:rgba(0,0,0,.35);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.2);border-radius:40px;padding:15px 25px;display:flex;justify-content:space-between;z-index:10}
+.logo{font-size:26px;font-weight:900}
+.logo span{color:#38bdf8}
+nav a{color:white;text-decoration:none;margin-left:20px}
+h1{font-size:70px;line-height:.95;margin:20px 0}
+.blue{color:#38bdf8}
+p{color:#cfe6ff;font-size:20px}
+.btn{background:#0ea5e9;color:white;padding:16px 28px;border-radius:16px;border:0;font-size:18px;font-weight:bold;cursor:pointer}
+.card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:28px;margin:20px;backdrop-filter:blur(16px)}
+.section{padding:90px 7%;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+input,select{width:100%;padding:16px;border-radius:14px;border:0;margin:8px 0;font-size:16px}
+.live{display:none}
+.show{display:block}
+.result{display:none}
+.result.show{display:grid}
+.trip img{width:100%;height:180px;object-fit:cover;border-radius:18px}
+.trip{background:white;color:#06111f;border-radius:24px;padding:16px;text-align:left}
+.trip p{color:#334155;font-size:15px}
+.price{font-size:28px;font-weight:900}
+.investor{background:#020817}
+@media(max-width:800px){h1{font-size:44px}.grid{grid-template-columns:1fr}nav a{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">voyara<span>.</span></div>
+<div>
+<a href="#demo">Demo</a>
+<a href="#come">Come funziona</a>
+<a href="#investor">Investor</a>
+</div>
+</nav>
+
+<section class="hero">
+<div>
+<div>🌍 Il nuovo modo di trovare il viaggio giusto</div>
+<h1>Scegli il tuo budget.<br><span class="blue">Al viaggio pensiamo noi.</span></h1>
+<p>Voyara trova il miglior viaggio possibile in base a budget, date, persone e qualità.</p>
+<button class="btn" onclick="document.getElementById('demo').scrollIntoView()">Prova la demo</button>
+</div>
+</section>
+
+<section class="section" id="demo">
+<h2>Demo Voyara Live</h2>
+<p>Inserisci pochi dati. Voyara cerca, filtra e propone 3 viaggi completi.</p>
+
+<div class="grid">
+<div class="card">
+<h3>Inizia qui</h3>
+<input value="€ 900">
+<input value="10–17 Agosto">
+<input value="2 adulti">
+<select><option>Sorprendimi</option><option>Grecia</option><option>Malta</option><option>Albania</option></select>
+<button class="btn" onclick="startDemo()">Trova il mio viaggio ✨</button>
+</div>
+
+<div class="card live" id="live">
+<h3>Voyara sta cercando...</h3>
+<p>✈️ 1.284 voli analizzati</p>
+<p>🏨 842 hotel confrontati</p>
+<p>⭐ 391 strutture sotto 4,5★ eliminate</p>
+<p>🚕 Trasferimenti ottimizzati</p>
+<p>💎 Migliore combinazione trovata</p>
+</div>
+
+<div class="card">
+<h3>Perché funziona</h3>
+<p>Gli altri siti ti fanno cercare il viaggio.</p>
+<p><b>Voyara trova il viaggio per te.</b></p>
+</div>
+</div>
+
+<div class="grid result" id="results">
+<div class="trip">
+<img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=900&q=80">
+<h3>Grecia Blu</h3>
+<p>Volo + hotel 4★ + trasferimenti</p>
+<div class="price">€ 899</div>
+<p>⭐ 4,8 · 7 notti · sotto budget</p>
+<button class="btn">Mi interessa</button>
+</div>
+
+<div class="trip">
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80">
+<h3>Malta Smart</h3>
+<p>Volo diretto + hotel centrale</p>
+<div class="price">€ 872</div>
+<p>⭐ 4,7 · risparmio stimato €186</p>
+<button class="btn">Mi interessa</button>
+</div>
+
+<div class="trip">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80">
+<h3>Albania Sea</h3>
+<p>Volo + hotel vista mare</p>
+<div class="price">€ 741</div>
+<p>⭐ 4,6 · qualità/prezzo eccellente</p>
+<button class="btn">Mi interessa</button>
+</div>
+</div>
+</section>
+
+<section class="section" id="come">
+<h2>Come funziona Voyara</h2>
+<div class="grid">
+<div class="card"><h3>1. Budget first</h3><p>Parti da quanto vuoi spendere.</p></div>
+<div class="card"><h3>2. Poche scelte migliori</h3><p>Ricevi 3 proposte selezionate.</p></div>
+<div class="card"><h3>3. Altre soluzioni</h3><p>Se non ti convincono, Voyara continua.</p></div>
+</div>
+</section>
+
+<section class="section investor" id="investor">
+<h2>Per investitori</h2>
+<div class="grid">
+<div class="card"><h3>Problema</h3><p>Organizzare un viaggio richiede ore tra siti, recensioni e prezzi.</p></div>
+<div class="card"><h3>Soluzione</h3><p>Voyara parte dal budget e propone viaggi completi.</p></div>
+<div class="card"><h3>Modello</h3><p>Commissioni affiliate, partnership travel e crescita globale.</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2>Pronto a partire?</h2>
+<p>Scegli il tuo budget. Al viaggio pensiamo noi.</p>
+<button class="btn">Trova il mio viaggio</button>
+</section>
+
+<script>
+function startDemo(){
+document.getElementById('live').classList.add('show');
+setTimeout(()=>document.getElementById('results').classList.add('show'),1800);
+}
+</script>
+
+</body>
+</html>
